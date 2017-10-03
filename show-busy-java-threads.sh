@@ -11,6 +11,12 @@
 readonly PROG="`basename $0`"
 readonly -a COMMAND_LINE=("$0" "$@")
 
+# Check os support!
+uname | grep '^Linux' -q || {
+    echo "$PROG only support Linux, not support `uname` yet!" 1>&2
+    exit 2
+}
+
 # Get corrent current user name via whoami command
 #   See get https://www.lifewire.com/current-linux-user-whoami-command-3867579
 # Because if use `sudo -u` to run command, env var $USER is not rewrited/correct, just inherited from outside!
